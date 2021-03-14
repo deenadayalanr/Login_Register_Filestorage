@@ -4,6 +4,13 @@ const adminRoute=require('./routes/admin_routes');
 
 const app=express();
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
+app.get('/',(req,res,next) => {
+    res.json("Welcome to this App");
+});
+
 app.use('/user',userRoute);
 
 app.use('/admin',adminRoute);

@@ -1,5 +1,5 @@
 const express=require('express');
-
+const User = require('../models/usermodal');
 const router=express.Router();
 
 router.post('/register',(req,res,next) => {
@@ -9,7 +9,10 @@ router.post('/register',(req,res,next) => {
         passWord:req.body.password,
         mobileNumber:req.body.mobilenumber,
     };
-    console.log(Person);
+    // console.log(Person);
+    const register=new User(Person.name,Person.email,Person.passWord,Person.mobileNumber);
+    register.saveRegister();
+    res.json({status:"Registeration Successful"});
 });
 
 module.exports=router;
